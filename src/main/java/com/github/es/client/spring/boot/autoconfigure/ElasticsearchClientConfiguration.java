@@ -36,7 +36,7 @@ public class ElasticsearchClientConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    public ElasticsearchClientFactory elasticsearchClientFactory(){
+    public ElasticsearchClientFactory elasticsearchClientFactory() {
         RestClientPoolConfig poolConfig = getPoolConfig();
         RestClientConfiguration clientConfiguration = getClientConfiguration();
         ElasticsearchClientFactory factory = new ElasticsearchClientFactory(clientConfiguration, poolConfig);
@@ -44,7 +44,7 @@ public class ElasticsearchClientConfiguration {
         return factory;
     }
 
-    private RestClientPoolConfig getPoolConfig(){
+    private RestClientPoolConfig getPoolConfig() {
         RestClientPoolConfig poolConfig = new RestClientPoolConfig();
         poolConfig.setMinIdle(properties.getPool().getMinIdle());
         poolConfig.setMaxIdle(properties.getPool().getMaxIdle());
@@ -53,22 +53,37 @@ public class ElasticsearchClientConfiguration {
         return poolConfig;
     }
 
-    private RestClientConfiguration getClientConfiguration(){
+    private RestClientConfiguration getClientConfiguration() {
+        List<ElasticsearchNode> hosts = createHosts();
+        RestClientConfiguration configuration = new RestClientClusterConfiguration(hosts);
+        return customizeConfiguration(configuration);
+    }
+
+    private List<ElasticsearchNode> createHosts() {
         List<ElasticsearchNode> hosts = new ArrayList<>();
         try {
             for (String node : properties.getNodes()) {
                 String[] hostPort = node.split(":");
                 hosts.add(new ElasticsearchNode(hostPort[0], Integer.parseInt(hostPort[1])));
             }
-            return new RestClientClusterConfiguration(hosts);
+            return hosts;
         } catch (NumberFormatException e) {
             throw new ElasticsearchException(e);
         }
     }
 
-    private void setDefaultHeaders(ElasticsearchClientFactory factory){
+    private RestClientConfiguration customizeConfiguration(RestClientConfiguration configuration) {
+        configuration.setConnectTimeout(properties.getConnectTimeout());
+        configuration.setConnectionRequestTimeout(properties.getConnectionRequestTimeout());
+        configuration.setSocketTimeout(properties.getSocketTimeout());
+        configuration.setMaxConnTotal(properties.getMaxConnTotal());
+        configuration.setMaxConnPerRoute(properties.getMaxConnPerRoute());
+        return configuration;
+    }
+
+    private void setDefaultHeaders(ElasticsearchClientFactory factory) {
         Map<String, String> headers = properties.getHeaders();
-        if(headers != null){
+        if (headers != null) {
             factory.setDefaultHeaders(properties.getHeaders());
         }
     }
