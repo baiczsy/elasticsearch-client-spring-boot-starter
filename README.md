@@ -15,7 +15,7 @@
 
 ~~~xml
 <properties>
-        <!-- 替换spring boot的低版本 -->
+      <!-- 替换spring boot的低版本 -->
       <elasticsearch.version>7.0.0</elasticsearch.version>
 </properties>
 ~~~
