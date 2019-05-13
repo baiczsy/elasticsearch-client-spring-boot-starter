@@ -11,7 +11,7 @@
 </dependency>
 ~~~
 
-注意，由于client是基于elasticsearch-rest-high-level-client 7.0.0，需要替换spring boot自带的低版本
+注意，由于client是基于elasticsearch-rest-high-level-client 7.0.0，需要替换spring boot自带的低版本，避免依赖冲突。
 
 ~~~xml
 <properties>
