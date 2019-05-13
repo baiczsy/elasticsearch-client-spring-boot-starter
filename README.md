@@ -20,7 +20,7 @@
 </properties>
 ~~~
 
-### 2. 配置
+### 2. application.yml配置
 
 ~~~yml
 spring:
