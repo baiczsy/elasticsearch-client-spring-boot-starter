@@ -5,10 +5,10 @@
 
 ~~~xml
 <dependency>
-            <groupId>com.github.baiczsy</groupId>
-            <artifactId>elasticsearch-client-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
-        </dependency>
+     <groupId>com.github.baiczsy</groupId>
+     <artifactId>elasticsearch-client-spring-boot-starter</artifactId>
+     <version>1.0.0</version>
+</dependency>
 ~~~
 
 注意，这个starter是基于elasticsearch-rest-high-level-client 7.0.0，需要替换spring boot自带的低版本
