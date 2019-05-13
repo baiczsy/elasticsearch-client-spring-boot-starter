@@ -27,7 +27,9 @@ spring:
   elasticsearch:
     client:
       nodes:
-        - 127.0.0.1:9200
+        - 192.168.0.100:9200
+        - 192.168.0.101:9200
+        - 192.168.0.102:9200
       headers: {header1: value1, header2: value2}
       pool:
         min-idle: 5
