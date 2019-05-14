@@ -82,9 +82,9 @@ public class ElasticsearchClientConfiguration {
     }
 
     private void setDefaultHeaders(ElasticsearchClientFactory factory) {
-        Map<String, String> headers = properties.getHeaders();
+        Map<String, String> headers = properties.getClient().getHeaders();
         if (headers != null) {
-            factory.setDefaultHeaders(properties.getHeaders());
+            factory.setDefaultHeaders(headers);
         }
     }
 }
