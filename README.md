@@ -34,13 +34,13 @@ spring:
       connection-request-timeout: 500
       socket-timeout: 20000
       max-conn-total: 100
-      max-conn-per-route: 100
+      max-conn-per-route: 100 
+      headers: {header1: value1, header2: value2}
     pool:
       min-idle: 5
       max-idle: 8
       max-active: 20
       max-wait: 1000ms
-    headers: {header1: value1, header2: value2}
 ~~~
 
 ### 3. 注入RestClientTemplate
