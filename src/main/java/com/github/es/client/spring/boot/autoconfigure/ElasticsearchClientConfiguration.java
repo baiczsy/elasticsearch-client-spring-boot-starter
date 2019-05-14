@@ -25,7 +25,6 @@ import java.util.Map;
  */
 @Configuration
 @ConditionalOnClass({GenericObjectPool.class, RestHighLevelClient.class})
-@EnableConfigurationProperties(ElasticsearchClientProperties.class)
 public class ElasticsearchClientConfiguration {
 
     private final ElasticsearchClientProperties properties;
