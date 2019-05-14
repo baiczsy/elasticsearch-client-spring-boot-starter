@@ -46,10 +46,13 @@ public class ElasticsearchClientConfiguration {
 
     private RestClientPoolConfig getPoolConfig() {
         RestClientPoolConfig poolConfig = new RestClientPoolConfig();
-        poolConfig.setMinIdle(properties.getPool().getMinIdle());
-        poolConfig.setMaxIdle(properties.getPool().getMaxIdle());
-        poolConfig.setMaxTotal(properties.getPool().getMaxActive());
-        poolConfig.setMaxWaitMillis(properties.getPool().getMaxWait().toMillis());
+        ElasticsearchClientProperties.Pool pool = properties.getPool();
+        if(pool != null){
+            poolConfig.setMinIdle(pool.getMinIdle());
+            poolConfig.setMaxIdle(pool.getMaxIdle());
+            poolConfig.setMaxTotal(pool.getMaxActive());
+            poolConfig.setMaxWaitMillis(pool.getMaxWait().toMillis());
+        }
         return poolConfig;
     }
 
@@ -76,11 +79,14 @@ public class ElasticsearchClientConfiguration {
     }
 
     private RestClientConfiguration customizeConfiguration(RestClientConfiguration configuration) {
-        configuration.setConnectTimeout(properties.getClient().getConnectTimeout());
-        configuration.setConnectionRequestTimeout(properties.getClient().getConnectionRequestTimeout());
-        configuration.setSocketTimeout(properties.getClient().getSocketTimeout());
-        configuration.setMaxConnTotal(properties.getClient().getMaxConnTotal());
-        configuration.setMaxConnPerRoute(properties.getClient().getMaxConnPerRoute());
+        ElasticsearchClientProperties.Client client = properties.getClient();
+        if(client != null){
+            configuration.setConnectTimeout(client.getConnectTimeout());
+            configuration.setConnectionRequestTimeout(client.getConnectionRequestTimeout());
+            configuration.setSocketTimeout(client.getSocketTimeout());
+            configuration.setMaxConnTotal(client.getMaxConnTotal());
+            configuration.setMaxConnPerRoute(client.getMaxConnPerRoute());
+        }
         return configuration;
     }
 
