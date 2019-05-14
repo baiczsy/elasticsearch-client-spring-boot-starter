@@ -25,22 +25,22 @@
 ~~~yml
 spring:
   elasticsearch:
-    client: 
-      nodes:
-        - 192.168.0.100:9200
-        - 192.168.0.101:9200
-        - 192.168.0.102:9200 
+    nodes:
+      - 192.168.0.100:9200
+      - 192.168.0.101:9200
+      - 192.168.0.102:9200
+    client:
       connect-timeout: 1000
       connection-request-timeout: 500
       socket-timeout: 20000
       max-conn-total: 100
-      max-conn-per-route: 100 
-      pool:
-        min-idle: 5
-        max-idle: 8
-        max-active: 20
-        max-wait: 1000ms 
-      headers: {header1: value1, header2: value2}  
+      max-conn-per-route: 100
+    pool:
+      min-idle: 5
+      max-idle: 8
+      max-active: 20
+      max-wait: 1000ms
+    headers: {header1: value1, header2: value2}
 ~~~
 
 ### 3. 注入RestClientTemplate
