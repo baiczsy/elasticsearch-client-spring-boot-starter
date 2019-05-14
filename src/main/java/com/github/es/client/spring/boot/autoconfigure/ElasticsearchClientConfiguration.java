@@ -73,11 +73,11 @@ public class ElasticsearchClientConfiguration {
     }
 
     private RestClientConfiguration customizeConfiguration(RestClientConfiguration configuration) {
-        configuration.setConnectTimeout(properties.getConnectTimeout());
-        configuration.setConnectionRequestTimeout(properties.getConnectionRequestTimeout());
-        configuration.setSocketTimeout(properties.getSocketTimeout());
-        configuration.setMaxConnTotal(properties.getMaxConnTotal());
-        configuration.setMaxConnPerRoute(properties.getMaxConnPerRoute());
+        configuration.setConnectTimeout(properties.getClient().getConnectTimeout());
+        configuration.setConnectionRequestTimeout(properties.getClient().getConnectionRequestTimeout());
+        configuration.setSocketTimeout(properties.getClient().getSocketTimeout());
+        configuration.setMaxConnTotal(properties.getClient().getMaxConnTotal());
+        configuration.setMaxConnPerRoute(properties.getClient().getMaxConnPerRoute());
         return configuration;
     }
 
