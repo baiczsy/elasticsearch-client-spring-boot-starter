@@ -1,5 +1,5 @@
 # elasticsearch-client-spring-boot-starter
-## 使用说明
+## elasticsearch-client-spring-boot-starter将帮助您在spring boot中使用spring-elasticsearch-client
 
 ### 1. 依赖
 
