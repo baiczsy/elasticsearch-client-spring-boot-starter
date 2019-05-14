@@ -60,6 +60,9 @@ public class ElasticsearchClientConfiguration {
     }
 
     private List<ElasticsearchNode> createHosts() {
+        if(properties.getNodes() == null){
+            throw new ElasticsearchException("Undefined elasticsearch nodes.");
+        }
         List<ElasticsearchNode> hosts = new ArrayList<>();
         try {
             for (String node : properties.getNodes()) {
