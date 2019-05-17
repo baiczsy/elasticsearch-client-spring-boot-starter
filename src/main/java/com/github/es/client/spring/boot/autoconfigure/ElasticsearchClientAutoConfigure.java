@@ -1,7 +1,7 @@
 package com.github.es.client.spring.boot.autoconfigure;
 
 import com.github.elasticsearch.client.connection.ElasticsearchClientFactory;
-import com.github.elasticsearch.client.core.RestClientOperations;
+import com.github.elasticsearch.client.core.DocumentOperations;
 import com.github.elasticsearch.client.core.RestClientTemplate;
 import com.github.es.client.spring.boot.autoconfigure.properties.ElasticsearchClientProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Import;
  * @date 2019-05-13
  */
 @Configuration
-@ConditionalOnClass(RestClientOperations.class)
+@ConditionalOnClass(DocumentOperations.class)
 @Import(ElasticsearchClientConfiguration.class)
 @EnableConfigurationProperties(ElasticsearchClientProperties.class)
 public class ElasticsearchClientAutoConfigure {
